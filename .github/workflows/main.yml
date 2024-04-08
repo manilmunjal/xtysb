@@ -5,7 +5,7 @@ name: Deploy Node.js App to Apache Tomcat
       - main
 jobs:
   build-and-deploy:
-    fail-fast: false
+    # fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
