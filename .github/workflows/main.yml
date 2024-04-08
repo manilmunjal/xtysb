@@ -1,0 +1,32 @@
+name: Deploy Node.js App to Apache Tomcat
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Log into Docker Hub
+      run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+    - name: Build Node.js App
+      run: |
+        cd path/to/your/node/app
+        npm install
+        npm run build
+
+    - name: Build Docker Image
+      run: docker build -t my-tomcat-app .
+
+    - name: Push Docker Image to Docker Hub
+      run: docker push yourusername/my-tomcat-app:latest
+
+    - name: Run Docker Container
+      run: docker run -d -p 8080:8080 yourusername/my-tomcat-app:latest
