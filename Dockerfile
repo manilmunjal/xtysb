@@ -13,7 +13,7 @@ RUN apt-get install -y tomcat9
 EXPOSE 8080
 
 # Copy the Node.js Hello World app to Tomcat webapps directory
-COPY hello-world /var/lib/tomcat9/webapps/hello-world
+COPY node-app.js
 
 # Start Tomcat
 CMD ["catalina.sh", "run"]

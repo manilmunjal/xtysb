@@ -2,11 +2,13 @@
 
 # Apache Tomcat startup script
 
-# Set environment variables
-export CATALINA_HOME=/path/to/tomcat/apache-tomcat-9.0.50
-export JAVA_HOME=/path/to/java/jdk-11
+# Set CATALINA_HOME dynamically
+export CATALINA_HOME="$(dirname "$(readlink -f "$0")")/.."
+
+# Set JAVA_HOME dynamically (assuming it's located in the parent directory of Tomcat)
+export JAVA_HOME="$(dirname "$CATALINA_HOME")/jdk-11"
 
 # Start Tomcat
-$CATALINA_HOME/bin/startup.sh
+"$CATALINA_HOME"/bin/startup.sh
 
 # Add any other custom commands or configurations here
